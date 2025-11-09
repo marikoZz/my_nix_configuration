@@ -139,14 +139,18 @@
   services.printing = {
     enable = true;
     webInterface = true;
-    drivers = with pkgs; [
-      brother-cups-mfc-j5330dw
-      gutenprint
-    ];
+
+    drivers =
+      # Dies ist die Magie: Wir rufen unsere neue Datei auf
+      let
+        mfc-j5340dw-drivers = pkgs.callPackage ./mfc-j5340dw.nix {};
+      in
+      # Und fügen die beiden Pakete hinzu, die sie definiert
+      [ mfc-j5340dw-drivers.driver mfc-j5340dw-drivers.cupswrapper ];
   };
 
   # 2. Brother Scan-Treiber (brscan5) konfigurieren
-  # Das Aktivieren dieses Moduls startet den SANE-Dienst bei Bedarf.
+  # (Dieser Teil war bereits korrekt)
   hardware.sane.brscan5 = {
     enable = true;
   };
