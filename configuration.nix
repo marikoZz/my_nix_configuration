@@ -149,7 +149,7 @@
   # Das ist der Dienst, der AirPrint-Geräte im Netzwerk findet.
   services.avahi = {
     enable = true;
-    nssmdns = true; # Wichtig für die Namensauflösung (.local Adressen)
+    nssmdns4 = true; # Wichtig für die Namensauflösung (.local Adressen)
     publish = {
       enable = true;
       addresses = true;
