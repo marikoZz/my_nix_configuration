@@ -83,4 +83,19 @@
   };
 
   # Other program configurations can be added here
+
+  # =========================================================================
+  # GNOME & dconf Settings (for 4K Font Scaling)
+  # =========================================================================
+
+  # Aktiviert das dconf-Modul, um gsettings zu verwalten
+  programs.dconf.enable = true;
+
+  # Setzt die gsettings-Werte
+  dconf.settings = {
+    # Hiermit verkleinern wir die Schrift
+    "org.gnome.desktop.interface" = {
+      text-scaling-factor = 0.75; # 0.8 = 80% Schriftgröße
+    };
+  };
 }
