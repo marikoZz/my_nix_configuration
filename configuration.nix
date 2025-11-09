@@ -86,7 +86,7 @@
   users.users.mariusl = {
     isNormalUser = true; # [cite: 15]
     description = "Marius Lange"; # [cite: 15]
-    extraGroups = [ "networkmanager" "wheel" ]; # [cite: 15]
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ]; # [cite: 15]
     # User packages are managed via home.nix
   };
 
@@ -164,13 +164,4 @@
   hardware.sane.brscan5 = {
     enable = true;
   };
-
-  # 4. Benutzer zu den richtigen Gruppen hinzufügen
-  # (Fügt scanner und lp zu deinen bestehenden Gruppen hinzu)
-  users.users.mariusl.extraGroups = [
-    "networkmanager"
-    "wheel"
-    "scanner" # Wichtig für SANE (Scannen)
-    "lp"      # Wichtig für CUPS (Drucken)
-  ];
 }
