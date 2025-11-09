@@ -3,7 +3,7 @@
 {
   home.username = "mariusl"; # [cite: 1]
   home.homeDirectory = "/home/mariusl"; # [cite: 1]
-  home.stateVersion = "23.11"; # [cite: 1]
+  home.stateVersion = "25.11"; # [cite: 1]
 
   # =========================================================================
   # User Packages
