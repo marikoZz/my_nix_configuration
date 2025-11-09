@@ -12,8 +12,12 @@
     # Dev
     neovim # [cite: 3]
     git # [cite: 3]
-    vscode # [cite: 3]
-
+    (pkgs.vscode.override {
+      commandLineArgs = [
+        "--enable-features=UseOzonePlatform"
+        "--ozone-platform=wayland"
+      ];
+    })
     # Apps
     vesktop # [cite: 3]
     kdePackages.kate # [cite: 3]
@@ -80,14 +84,6 @@
   programs.firefox = {
     enable = true; # [cite: 5]
     # Firefox settings and profiles can be configured here [cite: 6]
-  };
-
-  # Erstellt die globale Flag-Datei für VSCode
-  home.file.".config/code-flags.conf" = {
-    text = ''
-      --enable-features=UseOzonePlatform
-      --ozone-platform=wayland
-    '';
   };
 
   # Other program configurations can be added here
