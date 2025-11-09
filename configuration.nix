@@ -140,7 +140,7 @@
     enable = true;
     webInterface = true;
     drivers = with pkgs; [
-      brother-mfc-j5330dw
+      brother-cups-mfc-j5330dw
       gutenprint
     ];
   };
