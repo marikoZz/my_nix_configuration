@@ -88,9 +88,6 @@
   # GNOME & dconf Settings (for 4K Font Scaling)
   # =========================================================================
 
-  # Aktiviert das dconf-Modul, um gsettings zu verwalten
-  programs.dconf.enable = true;
-
   # Setzt die gsettings-Werte
   dconf = {
     enable = true;
