@@ -62,6 +62,16 @@
         echo "--> The faulty commit will NOT be pushed."
       fi
     '')
+
+    # NEUES SKRIPT: 'edit-nix'
+    (pkgs.writeShellScriptBin "edit-nix" ''
+      #!/bin/sh
+      # (Passe den Pfad an, falls er anders ist)
+      CONFIG_DIR="$HOME/nixos-config"
+
+      echo "Öffne NixOS-Konfiguration in Kate..."
+      kate "$CONFIG_DIR/configuration.nix" "$CONFIG_DIR/home.nix" &
+    '')
   ];
 
   # =========================================================================
