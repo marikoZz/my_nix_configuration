@@ -60,11 +60,10 @@
       variant = "";
     };
 
-    # Deactivated
     # Enable experimental features like fractional scaling
-    #xserver.displayManager.setupCommands = ''
-    #  gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
-    #''; # [cite: 11]
+    xserver.displayManager.setupCommands = ''
+      gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+    ''; # [cite: 11]
   };
 
   # =========================================================================
