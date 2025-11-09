@@ -138,14 +138,11 @@
   # 1. Druck-Service (CUPS) mit AirPrint (Treiberlos)
   services.printing = {
     enable = true;
-    webInterface = true; # (Für http://localhost:631)
-
-    # WICHTIG: Aktiviert "driverless" Drucken über Netzwerk-Erkennung
+    webInterface = true;
     browsing = true;
-    extraConfig = ''
+    extraConf = ''
       BrowseLocalProtocols dnssd
     '';
-    # Wir brauchen die 'drivers' Sektion NICHT MEHR.
   };
 
   # 2. Avahi (Zeroconf/Bonjour) aktivieren
