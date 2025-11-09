@@ -52,10 +52,10 @@
   # Desktop Environment (GNOME)
   # =========================================================================
   services = {
-    enable = true; # [cite: 11]
+    xserver.enable = true; # [cite: 11]
     displayManager.gdm.enable = true; # [cite: 11]
     desktopManager.gnome.enable = true; # [cite: 11]
-    xkb = { # [cite: 12]
+    xserver.xkb = { # [cite: 12]
       layout = "de";
       variant = "";
     };
