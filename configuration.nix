@@ -152,11 +152,13 @@
   # Das ist der Dienst, der AirPrint-Geräte im Netzwerk findet.
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns = true; # Wichtig für die Namensauflösung (.local Adressen)
     publish = {
       enable = true;
       addresses = true;
-      services = [ "workstation" "ssh" ];
+      workstation = true; # <-- KORREKTE OPTION statt 'services'
+      # (Das 'ssh' lassen wir der Einfachheit halber weg,
+      # es ist für den Drucker nicht nötig)
     };
   };
 
