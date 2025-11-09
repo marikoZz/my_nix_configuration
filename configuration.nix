@@ -135,23 +135,41 @@
   # Drucker & Scanner (Brother MFC J5345DW)
   # =========================================================================
 
-  # 1. Druck-Service (CUPS) aktivieren
+  # 1. Druck-Service (CUPS) mit AirPrint (Treiberlos)
   services.printing = {
     enable = true;
-    webInterface = true;
+    webInterface = true; # (Für http://localhost:631)
 
-    drivers =
-      # Dies ist die Magie: Wir rufen unsere neue Datei auf
-      let
-        mfc-j5340dw-drivers = pkgs.callPackage ./mfc-j5340dw.nix {};
-      in
-      # Und fügen die beiden Pakete hinzu, die sie definiert
-      [ mfc-j5340dw-drivers.driver mfc-j5340dw-drivers.cupswrapper ];
+    # WICHTIG: Aktiviert "driverless" Drucken über Netzwerk-Erkennung
+    browsing = true;
+    extraConfig = ''
+      BrowseLocalProtocols dnssd
+    '';
+    # Wir brauchen die 'drivers' Sektion NICHT MEHR.
   };
 
-  # 2. Brother Scan-Treiber (brscan5) konfigurieren
-  # (Dieser Teil war bereits korrekt)
+  # 2. Avahi (Zeroconf/Bonjour) aktivieren
+  # Das ist der Dienst, der AirPrint-Geräte im Netzwerk findet.
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      services = [ "workstation" "ssh" ];
+    };
+  };
+
+  # 3. Brother Scan-Treiber (brscan5) - BLEIBT GLEICH
+  # (Scannen ist ein anderes Protokoll und braucht den Treiber)
   hardware.sane.brscan5 = {
     enable = true;
+    netDevices = [
+      {
+        name = "Brother-Scanner";
+        # IP-Adresse deines Druckers hier eintragen!
+        ip = "192.168.0.144";
+      }
+    ];
   };
 }
