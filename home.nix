@@ -12,7 +12,6 @@
     # Dev
     neovim # [cite: 3]
     git # [cite: 3]
-    vscode # [cite: 3]
 
     # Apps
     vesktop # [cite: 3]
@@ -82,15 +81,11 @@
     # Firefox settings and profiles can be configured here [cite: 6]
   };
 
-  # Erstellt eine globale Flag-Datei für VSCode.
-  # Diese wird *immer* gelesen, egal wie VSCode gestartet wird.
-  home.file.".config/code-flags.conf" = {
-    text = ''
-      # Jedes Flag in eine eigene Zeile
-      --enable-features=UseOzonePlatform
-      --ozone-platform=wayland
-    '';
+  programs.vscode = {
+    enable = true;
+    enableWayland = true;
   };
+
 
   # Other program configurations can be added here
 }
