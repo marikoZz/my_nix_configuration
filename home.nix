@@ -62,16 +62,6 @@
         echo "--> The faulty commit will NOT be pushed."
       fi
     '')
-
-    # NEUES SKRIPT: 'edit-nix'
-    (pkgs.writeShellScriptBin "edit-nix" ''
-      #!/bin/sh
-      # (Passe den Pfad an, falls er anders ist)
-      CONFIG_DIR="$HOME/nixos-config"
-
-      echo "Öffne NixOS-Konfiguration in Kate..."
-      kate "$CONFIG_DIR/configuration.nix" "$CONFIG_DIR/home.nix" &
-    '')
   ];
 
   # =========================================================================
@@ -83,6 +73,7 @@
       ll = "ls -l"; # [cite: 4]
       # 'update' alias now points to the safe, version-controlled script
       update = "rebuild-and-push";
+      edit-nix = "kate ~/nixos-config/configuration.nix ~/nixos-config/home.nix &";
     };
   };
 
