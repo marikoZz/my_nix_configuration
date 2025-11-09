@@ -31,8 +31,8 @@
       # --- Configuration (Adjust if needed) ---
       CONFIG_DIR="$HOME/nixos-config"  # 1. Path to your Git repository
       FLAKE_TARGET=".#nixos"          # 2. Your flake output (from your 'update' alias) [cite: 5]
-      REMOTE="marikoZz"                  # 3. Your Git remote name
-      BRANCH="my-nix-config"                    # 4. Your Git branch name
+      REMOTE="origin"                  # 3. Your Git remote name
+      BRANCH="main"                    # 4. Your Git branch name
       # ----------------------------------------
 
       echo "--> Changing to config directory: $CONFIG_DIR"

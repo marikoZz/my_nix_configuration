@@ -51,7 +51,7 @@
   # =========================================================================
   # Desktop Environment (GNOME)
   # =========================================================================
-  services.xserver = {
+  services = {
     enable = true; # [cite: 11]
     displayManager.gdm.enable = true; # [cite: 11]
     desktopManager.gnome.enable = true; # [cite: 11]
