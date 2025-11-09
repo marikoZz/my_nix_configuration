@@ -138,29 +138,15 @@
   # 1. Druck-Service (CUPS) aktivieren
   services.printing = {
     enable = true;
-    # Aktiviert die Weboberfläche (wichtig zum Einrichten):
-    # http://localhost:631
     webInterface = true;
-
-    # Fügt die benötigten Treiber hinzu
     drivers = with pkgs; [
-      # Dies ist der Treiber für die MFC-J53xx Serie.
-      # Er ist der korrekte Treffer für dein Modell J5345DW.
       brother-mfc-j5330dw
-
-      # Es schadet nie, die Open-Source-Treiber als Fallback zu haben
       gutenprint
     ];
   };
 
-  # 2. Scan-Service (SANE) aktivieren
-  services.sane = {
-    enable = true;
-    # (Der eigentliche Treiber wird unten konfiguriert)
-  };
-
-  # 3. Brother Scan-Treiber (brscan5) konfigurieren
-  # Dein Modell (J5345DW) verwendet den 'brscan5' Treiber.
+  # 2. Brother Scan-Treiber (brscan5) konfigurieren
+  # Das Aktivieren dieses Moduls startet den SANE-Dienst bei Bedarf.
   hardware.sane.brscan5 = {
     enable = true;
   };
