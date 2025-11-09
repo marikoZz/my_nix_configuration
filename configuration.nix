@@ -81,11 +81,6 @@
   services.pulseaudio.enable = false; # [cite: 13]
 
   # =========================================================================
-  # Printing Support
-  # =========================================================================
-  services.printing.enable = true; # [cite: 13]
-
-  # =========================================================================
   # User Configuration
   # =========================================================================
   users.users.mariusl = {
@@ -135,4 +130,47 @@
     # Example:
     # NIXOS_OZONE_WL = "1";
   };
+
+  # =========================================================================
+  # Drucker & Scanner (Brother MFC J5345DW)
+  # =========================================================================
+
+  # 1. Druck-Service (CUPS) aktivieren
+  services.printing = {
+    enable = true;
+    # Aktiviert die Weboberfläche (wichtig zum Einrichten):
+    # http://localhost:631
+    webInterface = true;
+
+    # Fügt die benötigten Treiber hinzu
+    drivers = with pkgs; [
+      # Dies ist der Treiber für die MFC-J53xx Serie.
+      # Er ist der korrekte Treffer für dein Modell J5345DW.
+      brother-mfc-j5330dw
+
+      # Es schadet nie, die Open-Source-Treiber als Fallback zu haben
+      gutenprint
+    ];
+  };
+
+  # 2. Scan-Service (SANE) aktivieren
+  services.sane = {
+    enable = true;
+    # (Der eigentliche Treiber wird unten konfiguriert)
+  };
+
+  # 3. Brother Scan-Treiber (brscan5) konfigurieren
+  # Dein Modell (J5345DW) verwendet den 'brscan5' Treiber.
+  hardware.sane.brscan5 = {
+    enable = true;
+  };
+
+  # 4. Benutzer zu den richtigen Gruppen hinzufügen
+  # (Fügt scanner und lp zu deinen bestehenden Gruppen hinzu)
+  users.users.mariusl.extraGroups = [
+    "networkmanager"
+    "wheel"
+    "scanner" # Wichtig für SANE (Scannen)
+    "lp"      # Wichtig für CUPS (Drucken)
+  ];
 }
