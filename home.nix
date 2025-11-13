@@ -86,7 +86,7 @@
     # Firefox settings and profiles can be configured here [cite: 6]
   };
 
-  ervices.ollama = {
+  services.ollama = {
     enable = true;
     acceleration = "cuda"; # Oder "rocm" für AMD, oder weglassen für CPU
   };
