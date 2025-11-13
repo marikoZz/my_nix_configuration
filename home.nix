@@ -89,7 +89,7 @@
   programs.firefox = {
     enable = true; # [cite: 5]
     # Firefox settings and profiles can be configured here [cite: 6]
-  };y
+  };
 
   # Other program configurations can be added here
 }
