@@ -1,4 +1,3 @@
-minegrub-theme/
-result
 *.swp
-*.swp
+*~
+.kate-swp
