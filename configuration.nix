@@ -171,4 +171,17 @@
       }
     ];
   };
+
+    # 1. The AI backend (Ollama)
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm"; # Oder "rocm" für AMD, oder weglassen für CPU
+  };
+
+  # 2. The AI frontend (the interface)
+  services.open-webui = {
+    enable = true;
+    package = pkgs.open-webui;
+    ollamaBaseUrl = "http://localhost:11434";
+  };
 }

@@ -86,23 +86,5 @@
     # Firefox settings and profiles can be configured here [cite: 6]
   };
 
-  # 1. The AI backend (Ollama)
-  services.ollama = {
-    enable = true;
-    acceleration = "rocm"; # Oder "rocm" für AMD, oder weglassen für CPU
-  };
-
-  # 2. The AI frontend (the interface)
-  services.open-webui = {
-    enable = true;
-    # 'package' ist optional, wenn du das Standardpaket willst,
-    # aber ich lasse es hier zur Verdeutlichung:
-    package = pkgs.open-webui;
-
-    # Sagt der UI, wo der Ollama-Server ist
-    # (Dieser Standardwert ist schon korrekt, aber so siehst du, wie es funktioniert)
-    ollamaBaseUrl = "http://localhost:11434";
-  };
-
   # Other program configurations can be added here
 }
