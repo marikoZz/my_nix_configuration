@@ -88,7 +88,7 @@
 
   services.ollama = {
     enable = true;
-    acceleration = "cuda"; # Oder "rocm" für AMD, oder weglassen für CPU
+    acceleration = "rocm"; # Oder "rocm" für AMD, oder weglassen für CPU
   };
 
   # Other program configurations can be added here
