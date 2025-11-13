@@ -182,6 +182,5 @@
   services.open-webui = {
     enable = true;
     package = pkgs.open-webui;
-    ollamaBaseUrl = "http://localhost:11434";
   };
 }
