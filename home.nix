@@ -26,6 +26,11 @@
     # Utilities
     htop # [cite: 3]
 
+    #Fonts
+    inter
+    montserrat
+    jetbrains-mono
+
     # Custom build & push script
     (pkgs.writeShellScriptBin "rebuild-and-push" ''
       #!/bin/sh
@@ -84,7 +89,7 @@
   programs.firefox = {
     enable = true; # [cite: 5]
     # Firefox settings and profiles can be configured here [cite: 6]
-  };
+  };y
 
   # Other program configurations can be added here
 }
