@@ -22,6 +22,7 @@
     vesktop # [cite: 3]
     kdePackages.kate # [cite: 3]
     libreoffice-fresh # [cite: 3]
+    xournalpp
 
     # Utilities
     htop # [cite: 3]
