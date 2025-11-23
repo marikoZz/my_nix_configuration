@@ -72,6 +72,28 @@
         echo "--> The faulty commit will NOT be pushed."
       fi
     '')
+
+    # build without pushing to git
+      (pkgs.writeShellScriptBin "rebuild" ''
+      #!/bin/sh
+      # Abort script on any error
+      set -e
+
+      # --- Configuration (Adjust if needed) ---
+      CONFIG_DIR="$HOME/nixos-config"  # 1. Path to your Git repository
+      FLAKE_TARGET=".#nixos"          # 2. Your flake output (from your 'update' alias) [cite: 5]
+      # ----------------------------------------
+
+      echo "--> Changing to config directory: $CONFIG_DIR"
+      cd "$CONFIG_DIR"
+
+      echo "--> Building NixOS system (target: $FLAKE_TARGET)..."
+      if sudo nixos-rebuild switch --flake "$FLAKE_TARGET"; then
+        echo "--> Build successful."
+      else
+        echo "!!! NixOS build FAILED! !!!"
+      fi
+    '')
   ];
 
   # =========================================================================
@@ -84,6 +106,7 @@
       # 'update' alias now points to the safe, version-controlled script
       update = "rebuild-and-push";
       edit-nix = "kate ~/nixos-config/configuration.nix ~/nixos-config/home.nix &";
+
     };
   };
 
