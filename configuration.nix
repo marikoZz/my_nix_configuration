@@ -186,7 +186,7 @@
     # 1. The AI backend (Ollama)
   services.ollama = {
     enable = true;
-    acceleration = "rocm"; # Oder "rocm" für AMD, oder weglassen für CPU
+#    acceleration = "rocm"; # Oder "rocm" für AMD, oder weglassen für CPU
   };
 
   # 2. The AI frontend (the interface)
