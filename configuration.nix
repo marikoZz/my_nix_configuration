@@ -18,6 +18,17 @@
   # Boot Loader (systemd-boot)
   # =========================================================================
   boot.loader.systemd-boot.enable = true; # [cite: 8]
+  boot.loader.systemd-boot.configurationLimit = 3;
+
+  # FIX GPU ERROR WHEN AWAKING FROM SLEEP
+  # 1. Neuesten Kernel nutzen (Wichtig für RX 7800 XT)
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # 2. Fix für weiße Streifen nach Suspend
+  boot.kernelParams = [ "amdgpu.sg_display=0" ];
+
+  # 3. Firmware Updates
+  hardware.enableRedistributableFirmware = true;
 
   # =========================================================================
   # Networking

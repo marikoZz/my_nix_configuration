@@ -23,9 +23,13 @@
     kdePackages.kate # [cite: 3]
     libreoffice-fresh # [cite: 3]
     xournalpp
+    gparted
+    rar
+    brave
 
     # Utilities
     htop # [cite: 3]
+    rustdesk
 
     #Fonts
     inter
