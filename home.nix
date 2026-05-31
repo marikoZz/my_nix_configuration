@@ -26,6 +26,7 @@
     gparted
     rar
     brave
+    naps2
 
     # Utilities
     htop # [cite: 3]
