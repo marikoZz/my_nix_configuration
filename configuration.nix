@@ -17,7 +17,7 @@
   # =========================================================================
   # Boot Loader (systemd-boot)
   # =========================================================================
-  boot.loader.systemd-boot.enable = true; # [cite: 8]
+  boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 3;
 
   # FIX GPU ERROR WHEN AWAKING FROM SLEEP
@@ -33,40 +33,40 @@
   # =========================================================================
   # Networking
   # =========================================================================
-  networking.hostName = "nixos"; # [cite: 7]
-  networking.networkmanager.enable = true; # [cite: 7]
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
   # =========================================================================
   # Internationalisation & Localisation
   # =========================================================================
-  time.timeZone = "Europe/Berlin"; # [cite: 7]
+  time.timeZone = "Europe/Berlin";
 
   # Fix time conflicts with Windows in Dual-Boot setups
   time.hardwareClockInLocalTime = true;
 
-  i18n.defaultLocale = "de_DE.UTF-8"; # [cite: 7]
-  i18n.extraLocaleSettings = { # [cite: 9]
+  i18n.defaultLocale = "de_DE.UTF-8";
+  i18n.extraLocaleSettings = { 
     LC_ADDRESS = "de_DE.UTF-8";
     LC_IDENTIFICATION = "de_DE.UTF-8";
     LC_MEASUREMENT = "de_DE.UTF-8";
     LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8"; # [cite: 10]
+    LC_NAME = "de_DE.UTF-8";
     LC_NUMERIC = "de_DE.UTF-8";
     LC_PAPER = "de_DE.UTF-8";
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
   };
 
-  console.keyMap = "de"; # [cite: 7]
+  console.keyMap = "de";
 
   # =========================================================================
   # Desktop Environment (GNOME)
   # =========================================================================
   services = {
-    xserver.enable = true; # [cite: 11]
-    displayManager.gdm.enable = true; # [cite: 11]
-    desktopManager.gnome.enable = true; # [cite: 11]
-    xserver.xkb = { # [cite: 12]
+    xserver.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    xserver.xkb = {
       layout = "de";
       variant = "";
     };
@@ -74,30 +74,30 @@
     # Enable experimental features like fractional scaling
     xserver.displayManager.setupCommands = ''
       gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
-    ''; # [cite: 11]
+    '';
   };
 
   # =========================================================================
   # Audio (PipeWire)
   # =========================================================================
-  security.rtkit.enable = true; # [cite: 13]
+  security.rtkit.enable = true;
   services.pipewire = {
-    enable = true; # [cite: 13]
-    alsa.enable = true; # [cite: 13]
-    alsa.support32Bit = true; # [cite: 14]
-    pulse.enable = true; # [cite: 14]
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 
   # Disable PulseAudio as PipeWire provides compatibility
-  services.pulseaudio.enable = false; # [cite: 13]
+  services.pulseaudio.enable = false;
 
   # =========================================================================
   # User Configuration
   # =========================================================================
   users.users.mariusl = {
-    isNormalUser = true; # [cite: 15]
-    description = "Marius Lange"; # [cite: 15]
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ]; # [cite: 15]
+    isNormalUser = true;
+    description = "Marius Lange";
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
     # User packages are managed via home.nix
   };
 
@@ -105,26 +105,26 @@
   # Login & Display Management
   # =========================================================================
   services.displayManager.autoLogin = {
-    enable = true; # [cite: 16]
-    user = "mariusl"; # [cite: 16]
+    enable = true;
+    user = "mariusl";
   };
 
   # Disable unused TTYs for faster boot and security
-  systemd.services."getty@tty1".enable = false; # [cite: 16]
-  systemd.services."autovt@tty1".enable = false; # [cite: 16]
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   # =========================================================================
   # Package Management & Nix Settings
   # =========================================================================
-  nixpkgs.config.allowUnfree = true; # [cite: 17]
+  nixpkgs.config.allowUnfree = true;
 
   # Enable Flakes and the new nix command
-  nix.settings.experimental-features = [ "nix-command" "flakes" ]; # [cite: 19]
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # =========================================================================
   # System-wide Programs (with services)
   # =========================================================================
-  programs.steam.enable = true; # [cite: 17]
+  programs.steam.enable = true;
 
   # =========================================================================
   # System Packages
@@ -132,7 +132,7 @@
   # System-critical packages or tools
   environment.systemPackages = with pkgs; [
     # e.g. wget, curl, git (if not in home.packages)
-  ]; # [cite: 18]
+  ];
 
   # =========================================================================
   # Environment Variables
@@ -164,29 +164,25 @@
     publish = {
       enable = true;
       addresses = true;
-      workstation = true; # <-- KORREKTE OPTION statt 'services'
-      # (Das 'ssh' lassen wir der Einfachheit halber weg,
-      # es ist für den Drucker nicht nötig)
+      workstation = true;
     };
   };
 
-  # 3. Brother Scan-Treiber (brscan5) - BLEIBT GLEICH
-  # (Scannen ist ein anderes Protokoll und braucht den Treiber)
+  # 3. Brother Scan-Treiber (brscan5)
   hardware.sane.brscan5 = {
     enable = true;
     netDevices = [
       {
         name = "Brother-Scanner";
-        # IP-Adresse deines Druckers hier eintragen!
+        # IP-Adresse vom Drucker hier eintragen!
         ip = "192.168.0.144";
       }
     ];
   };
 
-    # 1. The AI backend (Ollama)
+    # 1. Ollama
   services.ollama = {
     enable = true;
-#    acceleration = "rocm"; # Oder "rocm" für AMD, oder weglassen für CPU
   };
 
   # 2. The AI frontend (the interface)
