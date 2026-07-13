@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "mariusl"; # [cite: 1]
-  home.homeDirectory = "/home/mariusl"; # [cite: 1]
-  home.stateVersion = "25.11"; # [cite: 1]
+  home.username = "mariusl";
+  home.homeDirectory = "/home/mariusl";
+  home.stateVersion = "25.11";
 
   # =========================================================================
   # User Packages
   # =========================================================================
   home.packages = with pkgs; [
     # Dev
-    neovim # [cite: 3]
-    git # [cite: 3]
+    neovim
+    git
     (pkgs.vscode.override {
       commandLineArgs = [
         "--enable-features=UseOzonePlatform"
@@ -19,9 +19,9 @@
       ];
     })
     # Apps
-    vesktop # [cite: 3]
-    kdePackages.kate # [cite: 3]
-    libreoffice-fresh # [cite: 3]
+    vesktop
+    kdePackages.kate
+    libreoffice-fresh
     xournalpp
     gparted
     rar
@@ -29,7 +29,7 @@
     naps2
 
     # Utilities
-    htop # [cite: 3]
+    htop
     rustdesk
 
     #Fonts
@@ -45,7 +45,7 @@
 
       # --- Configuration (Adjust if needed) ---
       CONFIG_DIR="$HOME/nixos-config"  # 1. Path to your Git repository
-      FLAKE_TARGET=".#nixos"          # 2. Your flake output (from your 'update' alias) [cite: 5]
+      FLAKE_TARGET=".#nixos"          # 2. Your flake output (from your 'update' alias)
       REMOTE="origin"                  # 3. Your Git remote name
       BRANCH="main"                    # 4. Your Git branch name
       # ----------------------------------------
@@ -86,7 +86,7 @@
 
       # --- Configuration (Adjust if needed) ---
       CONFIG_DIR="$HOME/nixos-config"  # 1. Path to your Git repository
-      FLAKE_TARGET=".#nixos"          # 2. Your flake output (from your 'update' alias) [cite: 5]
+      FLAKE_TARGET=".#nixos"          # 2. Your flake output (from your 'update' alias)
       # ----------------------------------------
 
       echo "--> Changing to config directory: $CONFIG_DIR"
@@ -105,9 +105,9 @@
   # Program Configurations
   # =========================================================================
   programs.bash = {
-    enable = true; # [cite: 4]
+    enable = true;
     shellAliases = {
-      ll = "ls -l"; # [cite: 4]
+      ll = "ls -l";
       # 'update' alias now points to the safe, version-controlled script
       update = "rebuild-and-push";
       edit-nix = "kate ~/nixos-config/configuration.nix ~/nixos-config/home.nix &";
@@ -116,8 +116,8 @@
   };
 
   programs.firefox = {
-    enable = true; # [cite: 5]
-    # Firefox settings and profiles can be configured here [cite: 6]
+    enable = true;
+    # Firefox settings and profiles can be configured here
   };
 
   # Other program configurations can be added here
